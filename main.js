@@ -58,13 +58,19 @@ const generateGalaxy = () => {
 
         const randomX =
             Math.pow(Math.random(), parameters.randomnessPower) *
-            (Math.random() < 0.5 ? 1 : -1);
+            (Math.random() < 0.5 ? 1 : -1) *
+            parameters.randomness *
+            radius;
         const randomY =
             Math.pow(Math.random(), parameters.randomnessPower) *
-            (Math.random() < 0.5 ? 1 : -1);
+            (Math.random() < 0.5 ? 1 : -1) *
+            parameters.randomness *
+            radius;
         const randomZ =
             Math.pow(Math.random(), parameters.randomnessPower) *
-            (Math.random() < 0.5 ? 1 : -1);
+            (Math.random() < 0.5 ? 1 : -1) *
+            parameters.randomness *
+            radius;
 
         positions[i3 + 0] =
             Math.cos(branchAngle + spinAngle) * radius + randomX;
@@ -89,6 +95,7 @@ const generateGalaxy = () => {
         size: parameters.size,
         depthWrite: false,
         vertexColors: true,
+        blending: THREE.AdditiveBlending,
     });
 
     // Points
