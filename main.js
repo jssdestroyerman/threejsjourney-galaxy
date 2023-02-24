@@ -27,6 +27,7 @@ const parameters = {
     randomnessPower: 3,
     colorInside: "#ff6030",
     colorOutside: "#1b3984",
+    rotationSpeed: 0.01,
 };
 
 let geometry, material, points;
@@ -141,6 +142,7 @@ gui.add(parameters, "randomnessPower")
     .onFinishChange(generateGalaxy);
 gui.addColor(parameters, "colorInside").onFinishChange(generateGalaxy);
 gui.addColor(parameters, "colorOutside").onFinishChange(generateGalaxy);
+gui.add(parameters, "rotationSpeed").min(0.01).max(10).step(0.01);
 
 /**
  * Sizes
@@ -201,7 +203,7 @@ const tick = () => {
     const elapsedTime = clock.getElapsedTime();
 
     // Update galaxy
-    points.rotation.y = elapsedTime * 0.1;
+    points.rotation.y = elapsedTime * parameters.rotationSpeed;
 
     // Update controls
     controls.update();
